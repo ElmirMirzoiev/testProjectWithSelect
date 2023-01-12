@@ -8,26 +8,35 @@
 .board1 {
     display: flex;
     margin: 10px 100px 10px 10px;
-    border: solid black;
+    border: solid lightgray;
+    border-radius: 5px;
 }
 
 .board2 {
     display: flex;
     margin: 10px;
-    border: solid black;
+    border: solid lightgray;
+    border-radius: 5px;
 }
 
 .list {
-    width: border-box;
+    width: content-box;
     min-height: 200px;
     margin: 20px;
+    padding: 0;
+    display: block;
+    justify-content: center;
 }
 
 .listItem {
+    padding: 0;
+    justify-content: center;
+    background-color: whitesmoke;
     margin: 5px;
-    width: border-box;
+    width: available;
     cursor: pointer;
     list-style: none;
+    border-radius: 5px;
 }
 
 

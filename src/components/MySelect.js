@@ -1,14 +1,13 @@
-import InputLabel from "@mui/material/InputLabel"
-import DeleteIcon from "@mui/icons-material/Delete"
-import Button from "@mui/material/Button"
-import FormControl from "@mui/material/FormControl"
-import IconButton from "@mui/material/IconButton"
-import MenuItem from "@mui/material/MenuItem"
-import Select from "@mui/material/Select"
-import {Reorder} from "framer-motion"
-import React, {useState} from "react"
+import InputLabel from '@mui/material/InputLabel'
+import FormControl from '@mui/material/FormControl'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import React, {useState} from 'react'
+import AddButton from './AddButton'
+import List from './List'
 
-function MySelect({arr, setArr}) {
+export default function MySelect({arr, setArr}) {
+
     const [selectedItem, setSelectedItem] = useState('')
     const [listItems, setListItems] = useState([])
 
@@ -20,13 +19,14 @@ function MySelect({arr, setArr}) {
     const handleAdd = () => {
         if (selectedItem === '') return
         setListItems([...listItems, selectedItem])
-        setArr(arr.filter(el => el !== selectedItem))
+        setArr(arr.filter(item => item !== selectedItem))
         setSelectedItem('')
         console.log(arr)
     }
-    const handleDelete = (el, index) => {
-        setListItems(listItems.filter(el => listItems.indexOf(el) !== index))
-        setArr([...arr, el])
+
+    const handleDelete = (item, index) => {
+        setListItems(listItems.filter(item => listItems.indexOf(item) !== index))
+        setArr([...arr, item])
     }
     return (
         <div>
@@ -37,34 +37,15 @@ function MySelect({arr, setArr}) {
                     value={selectedItem}
                     onChange={handleChange}
                 >
-                    {arr.map(el => (
-                        <MenuItem key={el} value={el}>
-                            {el}
-                        </MenuItem>))
-                    }
+                    {arr.map(item => (
+                        <MenuItem key={item} value={item}>
+                            {item}
+                        </MenuItem>
+                    ))}
                 </Select>
             </FormControl>
-            <div>
-                <Button variant='outlined' size='small' onClick={handleAdd}>
-                    Add
-                </Button>
-            </div>
-            <div className='list'>
-                <Reorder.Group axis='y' onReorder={setListItems} values={listItems}>
-                    <ul>
-                        {listItems.map((el, index) => (
-                            <Reorder.Item className='listItem' key={el} value={el}>
-                                {el}
-                                <IconButton onClick={() => handleDelete(el, index)}>
-                                    <DeleteIcon/>
-                                </IconButton>
-                            </Reorder.Item>
-                        ))}
-                    </ul>
-                </Reorder.Group>
-            </div>
+            <AddButton handleAdd={handleAdd}/>
+            <List setListItems={setListItems} listItems={listItems} handleDelete={handleDelete}/>
         </div>
     )
 }
-
-export default MySelect
