@@ -1,0 +1,33 @@
+.App {
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.board1 {
+    display: flex;
+    margin: 10px 100px 10px 10px;
+    border: solid black;
+}
+
+.board2 {
+    display: flex;
+    margin: 10px;
+    border: solid black;
+}
+
+.list {
+    width: border-box;
+    min-height: 200px;
+    margin: 20px;
+}
+
+.listItem {
+    margin: 5px;
+    width: border-box;
+    cursor: pointer;
+    list-style: none;
+}
+
+
